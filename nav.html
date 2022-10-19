@@ -1,0 +1,28 @@
+<!--substituir textos por variables php-->
+<?php
+$enlace1 = 'LA ESCUELA';
+$enlace2 = 'CURSOS Y HORARIOS';
+$enlace3 = 'SITUACIÓN Y CONTACTO';
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a class="navboton" href="index.php"><?=$enlace1?></a></li>
+            <li><a class="navboton" href="cursos.php"><?=$enlace2?></a></li>
+            <li><a class="navboton" href="contacto.php"><?=$enlace3?></a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
