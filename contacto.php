@@ -1,15 +1,24 @@
 <?php
-//titulo de la pagina
-$h2 = 'CONTACTO';
 
-//etiquetas del formulario
-$nombre = 'Nombre: *';
-$email = 'Email: *';
-$telefono = 'Teléfono:';
-$mensaje = 'Mensaje: *';
-//boton y alerta
-$boton = 'Enviar';
-$alerta = '<span id="alertatext">En cumplimiento de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (LOPD), le informamos que los datos de carácter personal que usted nos comunique mediante este formulario de contacto serán confidenciales y, bajo ningún concepto, serán transmitidos a terceras personas.<br><br>';
+$idioma;
+
+//array idiomas
+$idiomasPermitidos = array('es', 'ca');
+
+//idioma del navegador
+$idiomaNavegador = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+//FALTA VER QUE HACER CON ESTO DEL IDIOMA NAVEGADOR
+
+//detectamos cuando el usuario pulsa el enlace de idioma y nos llegara "es" o "ca"
+//añadida comprobacion en el array de que exista el idioma y sea permitido
+if (isset($_GET["idioma"]) && in_array($_GET['idioma'], $idiomasPermitidos)) {
+	$idioma = $_GET["idioma"];
+	setcookie('idioma', $idioma, time() + 3600 * 24 * 30 * 12, '/');
+}
+
+//fichero que contiene el idioma (contenido_es.php o contenido_ca.php)
+include("contenido_$idioma.php");
+
 
 ?>
 
@@ -47,13 +56,13 @@ $alerta = '<span id="alertatext">En cumplimiento de la Ley Orgánica 15/1999, de
 			</div>
 
 			<div class="sections">
-				<h1 style="text-align:center">LOCALIZACIÓN DEL CENTRO Y CONTACTO</h1><br><br>
+				<h1 style="text-align:center"><?=$h1?></h1><br><br>
 				<div class="contacto">
 
 					<!--substitucion de titulo por variable-->
 					<h2><?= $h2 ?></h2>
 
-					<p>Los campos marcados con * son obligatorios.</p><br>
+					<p><?= $camposObligatorios ?></p><br>
 
 					<form id="form" name="form" method="get" action='#'>
 						<!--substitucion de etiquetas por variable-->
@@ -61,10 +70,10 @@ $alerta = '<span id="alertatext">En cumplimiento de la Ley Orgánica 15/1999, de
 						<label for="email"><?= $email ?> </label><input type="email" name="email" id="email" placeholder="nom@mail.com" /><br><br>
 						<label for="telefono"><?= $telefono ?></label><input type="tel" name="telefono" id="telefono"><br><br>
 						<label><?= $mensaje ?></label><br><br>
-						<textarea id="mensaje" name="mensaje" placeholder="Introduzca aquí su pregunta o comentario"></textarea><br><br>
-						<span>He leido y acepto la política de privacidad:</span><br><br>
+						<textarea id="mensaje" name="mensaje" placeholder="<?= $mensaje ?>"></textarea><br><br>
+						<span><?= $privacidad ?></span><br><br>
 						<input id="privacidad" type="checkbox" name="privacidad">&nbsp&nbsp
-						<span id='ver' onclick="muestraAlert()">Ver aquí</span><br><br>
+						<span id='ver' onclick="muestraAlert()"><?= $verAqui ?></span><br><br>
 						<input id="enviar" type="button" name="enviar" value="<?= $boton ?>" onclick="validaFormulario()" /><br>
 					</form>
 

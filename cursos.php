@@ -1,3 +1,27 @@
+<?php
+
+$idioma;
+
+//array idiomas
+$idiomasPermitidos = array('es', 'ca');
+
+//idioma del navegador
+$idiomaNavegador = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+//FALTA VER QUE HACER CON ESTO DEL IDIOMA NAVEGADOR
+
+//detectamos cuando el usuario pulsa el enlace de idioma y nos llegara "es" o "ca"
+//añadida comprobacion en el array de que exista el idioma y sea permitido
+if (isset($_GET["idioma"]) && in_array($_GET['idioma'], $idiomasPermitidos)) {
+	$idioma = $_GET["idioma"];
+	setcookie('idioma', $idioma, time() + 3600 * 24 * 30 * 12, '/');
+}
+
+//fichero que contiene el idioma (contenido_es.php o contenido_ca.php)
+include("contenido_$idioma.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -23,39 +47,11 @@
 		<!--inclusion de nav con php-->
 		<?php
 		require('nav.html');
-		?>
 
-		<div class="content">
-			<div class="slider">
-				<img src="img/iem_1.jpg" /><img src="img/iem_2.jpg" />
-			</div>
+		//inclusion de contenido leyendo el archivo contenido_cursos_"es" o "ca".php
+		readfile("contenido_cursos_$idioma.php");
 
-			<div class="sections" id="cursos">
-				<h1>Idiomas (desde los 4 años).</h1>
-
-				<p>Horarios de mañana, tarde, noche y sábados mañana.</p>
-
-				<p>Grupos homogéneos, agrupados por edades y niveles</p>
-
-				<p>Grupos reducidos.</p>
-
-				<p>Preparación de los exámenes de la Univesidad de Cambridge o de la Escuela Oficial de idiomas.</p>
-
-				<h1>Refuerzo escolar de todas las materias</h1>
-
-				<p>Para todos los niveles escolares</p>
-
-				<p>Trabajamos con los libros que utilizan los alumnos</p>
-
-				<p>Seguimiento personalizado.</p>
-
-				<p>Técnicas de estudio.</p>
-
-			</div>
-		</div>
-
-		<!--inclusion de footer con php-->
-		<?php
+		//inclusion de footer con php
 		require('footer.html');
 		?>
 
