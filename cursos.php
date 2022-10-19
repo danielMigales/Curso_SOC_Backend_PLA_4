@@ -1,10 +1,7 @@
 <?php
-
 //en este archivo estan todas las validaciones de idioma
 require("validaciones.php");
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -20,25 +17,24 @@ require("validaciones.php");
 </head>
 
 <body>
-
 	<!--inclusion de header con php-->
-	<?php
-	require('header.html');
-	?>
-
+	<?php require('html/header.html'); ?>
 	<div class="wraper">
-
 		<!--inclusion de nav con php-->
+		<?php require('html/nav.html'); ?>
+		<div class="content">
+			<div class="slider">
+				<img src="img/iem_1.jpg" /><img src="img/iem_2.jpg" />
+			</div>
+			<?php
+			//inclusion de contenido leyendo el archivo contenido_cursos_"es" o "ca".php
+			readfile("contenido_cursos_$idioma.php");
+			?>
+		</div>
 		<?php
-		require('nav.html');
-
-		//inclusion de contenido leyendo el archivo contenido_cursos_"es" o "ca".php
-		readfile("contenido_cursos_$idioma.php");
-
 		//inclusion de footer con php
-		require('footer.html');
+		require('html/footer.html');
 		?>
-
 	</div>
 </body>
 
