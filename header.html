@@ -13,7 +13,15 @@
         <img src="img/IEM_logo.png">
         <!--substituir textos por variables php-->
         <h1><?=$tituloHeader?></h1>
-        <a href="index.php?idioma=es">ES</a> | <a href="index.php?idioma=ca">CA</a>
+        <!--enlaces href iniciales-->
+        <!--<a href="index.php?idioma=es">ES</a> | <a href="index.php?idioma=ca">CA</a>-->
+        <!--nuevo href ejercicio 8 multimedia en todas las paginas-->
+        <!--<a href="?idioma=es">ES</a> | <a href="?idioma=ca">CA</a>-->
+        <!--modificando el atributo de href-->
+        <?php
+        $archivo =basename($_SERVER['PHP_SELF']);
+        ?>
+        <a href="<?=$archivo?>?idioma=es">ES</a> | <a href="<?=$archivo?>?idioma=ca">CA</a>
     </header><br>
 </body>
 
