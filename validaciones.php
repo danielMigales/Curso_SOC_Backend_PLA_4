@@ -1,4 +1,6 @@
 <?php
+//idioma por defecto
+$idioma = 'es';
 
 //obtenemos el idioma del navegador
 $idiomaNavegador = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
