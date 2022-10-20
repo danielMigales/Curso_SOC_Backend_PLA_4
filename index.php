@@ -1,6 +1,10 @@
 <?php
 //en este archivo estan todas las validaciones de idioma
 require("validaciones.php");
+
+//fichero que contiene el idioma (contenido_es.php o contenido_ca.php)
+include("contenido_$idioma.php");
+
 ?>
 
 <!DOCTYPE html>

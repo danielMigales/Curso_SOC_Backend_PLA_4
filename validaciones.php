@@ -28,8 +28,3 @@ if (isset($_GET["idioma"]) && in_array($_GET['idioma'], $idiomasPermitidos)) {
 	$idioma = $_GET["idioma"];
 	setcookie('idioma', $idioma, time() + 3600 * 24 * 30 * 12, '/');
 }
-
-//fichero que contiene el idioma (contenido_es.php o contenido_ca.php)
-include("contenido_$idioma.php");
-
-?>
